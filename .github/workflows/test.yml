@@ -1,25 +1,18 @@
----
-name: Lint
-
-on:  # yamllint disable-line rule:truthy
-  push: null
-  pull_request: null
-
+name : Setup Go Environment
+on : 
+  pull_request:
+    branches:
+      - main
+      - release
+    types: [opened, edited, synchronize]
 jobs:
-  build:
-    name: Lint
+  build_and_testing:
+    name: Build and Testing 
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      packages: read
-      # To report GitHub Actions status checks
-      statuses: write
-
-    steps:
+    timeout-minutes: 5
+    steps :
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
           go-version: '>=1.17.0'
       - run: go version
-...
