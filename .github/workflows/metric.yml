@@ -20,3 +20,4 @@ jobs:
         with:
           gh-token: ${{ secrets.GITHUB_TOKEN }}                      
           go-roots: |
+            Eksplor_Github_Action
