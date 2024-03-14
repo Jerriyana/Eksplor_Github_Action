@@ -20,4 +20,4 @@ jobs:
         with:
           gh-token: ${{ secrets.GITHUB_TOKEN }}                      
           go-roots: |
-            test
+            test/main.go
