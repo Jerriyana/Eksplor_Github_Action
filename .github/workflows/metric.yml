@@ -19,3 +19,4 @@ jobs:
       - uses: autometrics-dev/diff-metrics@v1
         with:
           gh-token: ${{ secrets.GITHUB_TOKEN }}                      
+          go-roots: |
