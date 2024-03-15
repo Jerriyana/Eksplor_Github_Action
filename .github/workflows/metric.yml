@@ -20,5 +20,7 @@ jobs:
         with:
           gh-token: ${{ secrets.GITHUB_TOKEN }}                      
           go-roots: |
-            test/main.go
-            test/user_controller.go
+            test
+              go.mod
+              main.go
+              user_controller.go
