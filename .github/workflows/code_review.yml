@@ -12,4 +12,4 @@ jobs:
       - name: golangci-lint
         uses: reviewdog/action-golangci-lint@v2.6.1
         with:
-          golangci_lint_flags: './test'
+          golangci_lint_flags: test/main.go
