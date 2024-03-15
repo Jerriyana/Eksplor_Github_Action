@@ -4,61 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	m "modul5/models"
-	"net/http"
-	"strconv"
+	m "modul5/models"		
 
 	"github.com/gorilla/mux"
 )
-
-// 1. GET ALL USERS
-func GetAllUsers(w http.ResponseWriter, r *http.Request) {
-	db := connect(w)
-	defer db.Close()
-
-	query := "SELECT * FROM users"
-	// Read from Query Param
-	name := r.URL.Query()["name"]
-	age := r.URL.Query()["age"]
-	if name != nil {
-		fmt.Println(name[0])
-		query += " WHERE name='" + name[0] + "'  "
-	}
-
-	if age != nil {
-		if name[0] != "" {
-			query += " AND"
-		} else {
-			query += " WHERE"
-		}
-		query += " age= '" + age[0] + "' "
-	}
-
-	rows, err := db.Query(query)
-	if err != nil {
-		log.Println(err)
-		sendErrorResponse(w, 500, "internal error")
-		return
-	}
-	var user m.Users
-	var users []m.Users
-	for rows.Next() {
-		if err := rows.Scan(&user.ID, &user.Name, &user.Age, &user.Address, &user.Password, &user.Email); err != nil {
-			log.Println(err)
-			sendErrorResponse(w, 500, "internal error")
-			return
-		} else {
-			users = append(users, user)
-		}
-	}
-	w.Header().Set("Content-Type", "application/json")
-
-	var response m.UsersResponse
-	response.Status = 200
-	response.Message = "Success"
-	response.Data = users
-	json.NewEncoder(w).Encode(response)
-}
 
 // 1b. GET ALL USERS GORM
 func GetAllUsers2(w http.ResponseWriter, r *http.Request) {
