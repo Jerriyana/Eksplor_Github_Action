@@ -16,7 +16,7 @@ jobs:
         uses: reviewdog/action-golangci-lint@v2
         with:
           # optionally use a specific version of Go rather than the latest one
-          go_version: "1.17"
+          go_version: "1.21.6"
 
           # Can pass --config flag to change golangci-lint behavior and target
           # directory.
