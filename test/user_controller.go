@@ -9,26 +9,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// 1b. GET ALL USERS GORM
-func GetAllUsers2(w http.ResponseWriter, r *http.Request) {
-	db := gorm_connect(w)
-
-	// Mengambil semua pengguna dari database
-	var users []m.Users
-	result := db.Find(&users) // bisa pake first
-	if result.Error != nil {
-		if result.RowsAffected == 0 {
-			sendErrorResponse(w, 404, "Pengguna tidak ditemukan")
-		} else {
-			log.Println(result.Error)
-			sendErrorResponse(w, 500, "Kesalahan internal server")
-		}
-		return
-	}
-
-	sendGetUsersResponse(w, 200, "Berhasil Get Data", users)
-}
-
 // 1c. GET USERS BY AGE
 func GetUsersByAge(w http.ResponseWriter, r *http.Request) {
 	db := gorm_connect(w)
